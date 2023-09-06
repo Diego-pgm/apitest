@@ -1,10 +1,23 @@
-pipeline {
-  agent {label 'ubuntu'}
-  stages{
-    stage('Build'){
-      steps {
-        sh: 'echo "Hello from github apitest master branch!"'
-      }
+pipeline { 
+    agent any 
+    options {
+        skipStagesAfterUnstable()
     }
-  }
+    stages {
+        stage('Build') { 
+            steps { 
+                sh 'make' 
+            }
+        }
+        stage('Test'){
+            steps {
+                sh 'make check'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'make publish'
+            }
+        }
+    }
 }
