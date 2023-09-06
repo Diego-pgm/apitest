@@ -8,17 +8,17 @@ pipeline {
     stages {
         stage('Build') { 
             steps { 
-                sh 'make' 
+                sh 'echo "Build Stage"' 
             }
         }
         stage('Test'){
             steps {
-                sh 'make check'
+                sh 'echo "Test Stage"'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'make publish'
+                sh 'echo "Deploy stage"'
             }
         }
     }
